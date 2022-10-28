@@ -13,7 +13,7 @@ namespace UserAuthProject
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
             builder.Services.AddDbContext<DatabaseContext>(opts =>
             {
-                opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection");
+                opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
                 //opts.UseLazyLoadingProxies();   
             });
 
