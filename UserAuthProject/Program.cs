@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using UserAuthProject.Entities;
+
 namespace UserAuthProject
 {
     public class Program
@@ -8,6 +11,11 @@ namespace UserAuthProject
 
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            builder.Services.AddDbContext<DatabaseContext>(opts =>
+            {
+                opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection");
+                //opts.UseLazyLoadingProxies();   
+            });
 
             var app = builder.Build();
 
