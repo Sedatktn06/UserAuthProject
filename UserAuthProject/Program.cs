@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using UserAuthProject.Entities;
 using UserAuthProject.Helpers;
@@ -17,6 +18,17 @@ namespace UserAuthProject
                 opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
                 //opts.UseLazyLoadingProxies();   
             });
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(opts =>
+                {
+                    opts.Cookie.Name = ".UserAuthProject.auth";
+                    opts.ExpireTimeSpan = TimeSpan.FromDays(7);
+                    opts.SlidingExpiration = false;
+                    opts.LoginPath = "/Account/Login";
+                    opts.LogoutPath = "/Account/Logout";
+                    opts.AccessDeniedPath = "/Home/AccessDenied";
+                });
 
             var app = builder.Build();
 

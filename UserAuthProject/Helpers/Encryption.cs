@@ -9,7 +9,7 @@ namespace UserAuthProject.Helpers
         {
             get
             {
-                var builder = new ConfigurationBuilder()
+                var builder = new ConfigurationBuilder() 
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json");
                 config = builder.Build();
